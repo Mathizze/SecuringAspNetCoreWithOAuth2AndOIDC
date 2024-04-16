@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+//using Microsoft.AspNetCore.Authentication.OAuth.Claims;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +19,31 @@ builder.Services.AddHttpClient("APIClient", client =>
     client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
 });
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+}).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+{
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.Authority = "https://localhost:5001/";
+    options.ClientId = "imagegalleryclient";
+    options.ClientSecret = "secret";
+    options.ResponseType = "code";
+    //options.Scope.Add("openid");
+    //options.Scope.Add("profile");
+    //options.CallbackPath = new PathString("signin-oidc");
+    // SignedOutCallbackPath: default = host:port/signout-callback-oidc.
+    // Must match with the post logout redirect URI at IDP client config if
+    // you want to automatically return to the application after logging out
+    // of IdentityServer.
+    // To change, set SignedOutCallbackPath
+    // eg: options.SignedOutCallbackPath = new PathString("pathaftersignout");
+    options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +58,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
