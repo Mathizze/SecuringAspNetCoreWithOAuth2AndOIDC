@@ -12,7 +12,10 @@ namespace Mha.IDP
                 new IdentityResources.Profile(),
                 new IdentityResource("roles",
                     "Your role(s)",
-                    new [] { "role" })
+                    new [] { "role" }),
+                new IdentityResource("country",
+                    "The country you're living in",
+                    new [] { "country" })
             };
 
         public static IEnumerable<ApiResource> ApiResources =>
@@ -20,16 +23,20 @@ namespace Mha.IDP
                 {
                     new ApiResource("imagegalleryapi",
                         "Image Gallery API",
-                        new [] { "role" })
+                        new [] { "role", "country" })
                     {
-                        Scopes = { "imagegalleryapi.fullaccess" }
+                        Scopes = { "imagegalleryapi.fullaccess",
+                            "imagegalleryapi.read",
+                            "imagegalleryapi.write" }
                     }
                 };
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
                 {
-                    new ApiScope("imagegalleryapi.fullaccess")
+                    new ApiScope("imagegalleryapi.fullaccess"),
+                    new ApiScope("imagegalleryapi.read"),
+                    new ApiScope("imagegalleryapi.write")
                 };
 
         public static IEnumerable<Client> Clients =>
@@ -53,7 +60,10 @@ namespace Mha.IDP
                             IdentityServerConstants.StandardScopes.OpenId,
                             IdentityServerConstants.StandardScopes.Profile,
                             "roles",
-                            "imagegalleryapi.fullaccess"
+                            //"imagegalleryapi.fullaccess",
+                            "imagegalleryapi.read",
+                            "imagegalleryapi.write",
+                            "country"
                         },
                         ClientSecrets =
                         {
