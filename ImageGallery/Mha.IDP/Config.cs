@@ -27,7 +27,8 @@ namespace Mha.IDP
                     {
                         Scopes = { "imagegalleryapi.fullaccess",
                             "imagegalleryapi.read",
-                            "imagegalleryapi.write" }
+                            "imagegalleryapi.write" },
+                        ApiSecrets = { new Secret("apisecret".Sha256()) }
                     }
                 };
 
@@ -47,6 +48,12 @@ namespace Mha.IDP
                         ClientName = "Image Gallery",
                         ClientId = "imagegalleryclient",
                         AllowedGrantTypes = GrantTypes.Code,
+                        AccessTokenType = AccessTokenType.Reference,
+                        AllowOfflineAccess = true,
+                        UpdateAccessTokenClaimsOnRefresh = true,
+                        AccessTokenLifetime = 120,
+                        //AuthorizationCodeLifetime = ...
+                        //IdentityTokenLifetime = ...
                         RedirectUris =
                         {
                             "https://localhost:7184/signin-oidc"
