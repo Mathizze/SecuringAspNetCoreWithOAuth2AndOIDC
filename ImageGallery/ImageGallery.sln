@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageGallery.Model", "Image
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mha.IDP", "Mha.IDP\Mha.IDP.csproj", "{F6A93A6E-E694-49C3-8663-C0FE5DB7F123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGallery.Authorization", "ImageGallery.Authorization\ImageGallery.Authorization.csproj", "{CB44926B-75E1-4547-80A3-A096009BA413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageGallery.Authorization", "ImageGallery.Authorization\ImageGallery.Authorization.csproj", "{CB44926B-75E1-4547-80A3-A096009BA413}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGallery.BFF", "ImageGallery.BFF\ImageGallery.BFF.csproj", "{F445A9E8-1961-4AAF-8B5D-6A295F6D6E2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{CB44926B-75E1-4547-80A3-A096009BA413}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB44926B-75E1-4547-80A3-A096009BA413}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB44926B-75E1-4547-80A3-A096009BA413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F445A9E8-1961-4AAF-8B5D-6A295F6D6E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F445A9E8-1961-4AAF-8B5D-6A295F6D6E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F445A9E8-1961-4AAF-8B5D-6A295F6D6E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F445A9E8-1961-4AAF-8B5D-6A295F6D6E2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
